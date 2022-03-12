@@ -20295,7 +20295,7 @@ Weapons.one_handed_crowbill.actions.action_one.heavy_attack_left.allowed_chain_a
 					input = "action_wield"
 				}
 			}
-Weapons.one_handed_crowbill.actions.action_one.heavy_attack_right_up.damage_profile = "priest_hammer_blunt_smiter"
+Weapons.one_handed_crowbill.actions.action_one.heavy_attack_right_up.damage_profile = "medium_slashing_smiter_1h"
 Weapons.one_handed_crowbill.actions.action_one.heavy_attack_right_up.range_mod = 1.2
 Weapons.one_handed_crowbill.actions.action_one.heavy_attack_right_up.total_time = 1.5
 Weapons.one_handed_crowbill.actions.action_one.heavy_attack_right_up.anim_time_scale = 1
