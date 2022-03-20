@@ -6,9 +6,10 @@ function mod.on_all_mods_loaded()
     end
 end
 
-mod:echo("Reiklanders Never Cry v1.43")
+mod:echo("Reiklanders Never Cry v1.44")
 
 --To Do List
+	--Double Check Range Changes on Spears/Halberd/ElfSword
 	--Light 3 1h Sword increase to great axe light with 2x finesse
 	--Get around to the rest of Saltzpyre's weapons
 	--AnF 1 less combo in the chain, revert back to dual axe heavy
@@ -708,7 +709,9 @@ Weapons.one_handed_hammer_template_1.actions.action_two.default.buff_data = {
 				}
 			}
 Weapons.one_handed_hammer_template_1.max_fatigue_points = 6
-Weapons.one_handed_hammer_template_1.dodge_count = 5
+Weapons.one_handed_hammer_template_1.dodge_count = 6
+Weapons.one_handed_hammer_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.one_handed_hammer_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 -------------------------------------------------------------------1h Sword--------------------------------------------------------------------------------
 --Simple Template Changes
 DamageProfileTemplates.light_slashing_linesman_finesse.targets[1].boost_curve_coefficient_headshot = 2.5
@@ -1048,7 +1051,6 @@ Weapons.one_handed_swords_template_1.actions.action_one.heavy_attack_left.allowe
 					input = "action_wield"
 				}
 			}
---Weapons.one_handed_swords_template_1.actions.action_one.heavy_attack_left.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 Weapons.one_handed_swords_template_1.actions.action_one.heavy_attack_right.hit_stop_anim = nil
 Weapons.one_handed_swords_template_1.actions.action_one.heavy_attack_right.slide_armour_hit = true
 Weapons.one_handed_swords_template_1.actions.action_one.heavy_attack_right.anim_time_scale = 1
@@ -1108,7 +1110,6 @@ Weapons.one_handed_swords_template_1.actions.action_one.heavy_attack_right.allow
 					input = "action_wield"
 				}
 			}
---Weapons.one_handed_swords_template_1.actions.action_one.heavy_attack_right.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 --Default State
 Weapons.one_handed_swords_template_1.actions.action_one.default.buff_data = {
 				{
@@ -1260,7 +1261,9 @@ Weapons.one_handed_swords_template_1.actions.action_two.default.buff_data = {
 				}
 			}
 Weapons.one_handed_swords_template_1.max_fatigue_points = 6
-Weapons.one_handed_swords_template_1.dodge_count = 5
+Weapons.one_handed_swords_template_1.dodge_count = 6
+Weapons.one_handed_swords_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.one_handed_swords_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 ----------------------------------------------------------------Mace and Sword----------------------------------------------------------------------------
 --Lights 1/2
 Weapons.dual_wield_hammer_sword_template.actions.action_one.light_attack_left_diagonal.damage_profile = "light_blunt_tank_dual"
@@ -1906,10 +1909,23 @@ Weapons.dual_wield_hammer_sword_template.actions.action_one.default_right_heavy.
 				}
 			}
 --Dodge/Block/etc
-Weapons.dual_wield_hammer_sword_template.dodge_count = 4
+Weapons.dual_wield_hammer_sword_template.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.dual_wield_hammer_sword_template.dodge_count = 5
+Weapons.dual_wield_hammer_sword_template.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.dual_wield_hammer_sword_template.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 --------------------------------------------------------------------Tuskgor Spear-------------------------------------------------------------------
 --Lights 1/2/4
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.damage_profile = "medium_slashing_smiter_stab_elf"
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.height_mod = 3
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.width_mod = 15
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.range_mod = 1.7
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.range_mod_add = nil
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.total_time = 1.5
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.anim_time_scale = 1
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.buff_data = {
@@ -1966,7 +1982,12 @@ Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.al
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_left.baked_sweep = nil
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.damage_profile = "medium_slashing_smiter_stab_elf"
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.height_mod = 3
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.width_mod = 15
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.range_mod = 1.7
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.range_mod_add = nil
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.total_time = 1.5
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.anim_time_scale = 1
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.buff_data = {
@@ -2023,7 +2044,12 @@ Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_1.baked_sweep = nil
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.damage_profile = "medium_slashing_smiter_stab_elf"
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.height_mod = 3
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.width_mod = 15
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.range_mod = 1.7
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.range_mod_add = nil
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.total_time = 1.5
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.anim_time_scale = 1
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.buff_data = {
@@ -2080,6 +2106,7 @@ Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_stab_2.baked_sweep = nil
 --Light 3/Pushstab
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_right.total_time = 1.8
 Weapons.two_handed_heavy_spears_template.actions.action_one.light_attack_right.anim_time_scale = 1.2
@@ -2294,7 +2321,7 @@ Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_tank.al
 				},
 				{
 					sub_action = "default",
-					start_time = 0.384,
+					start_time = 0.4,
 					action = "action_two",
 					input = "action_two_hold"
 				},
@@ -2305,6 +2332,10 @@ Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_tank.al
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.height_mod = 3
+Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.width_mod = 15
+Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.range_mod = 2
+Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.range_mod_add = nil
 Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.total_time = 1.5
 Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.anim_time_scale = 1
 Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.buff_data = {
@@ -2324,7 +2355,7 @@ Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.bu
 Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.allowed_chain_actions = {
 				{
 					sub_action = "default",
-					start_time = 0.48,
+					start_time = 0.5,
 					end_time =1,
 					action = "action_one",
 					release_required = "action_one_hold",
@@ -2332,7 +2363,7 @@ Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.al
 				},
 				{
 					sub_action = "default",
-					start_time = 0.48,
+					start_time = 0.5,
 					end_time = 1,
 					action = "action_one",
 					release_required = "action_one_hold",
@@ -2352,17 +2383,18 @@ Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.al
 				},
 				{
 					sub_action = "default",
-					start_time = 0.38,
+					start_time = 0.4,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.48,
+					start_time = 0.5,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_heavy_spears_template.actions.action_one.heavy_attack_left.baked_sweep = nil
 --Default State
 Weapons.two_handed_heavy_spears_template.actions.action_one.default.anim_event = "attack_swing_charge"
 Weapons.two_handed_heavy_spears_template.actions.action_one.default.buff_data = {
@@ -2566,12 +2598,14 @@ Weapons.two_handed_heavy_spears_template.actions.action_two.default.buff_data = 
 					buff_name = "planted_decrease_movement"
 				}
 			}
-Weapons.two_handed_heavy_spears_template.max_fatigue_points = 6
+Weapons.two_handed_heavy_spears_template.block_angle = 90
 Weapons.two_handed_heavy_spears_template.dodge_count = 4
 Weapons.two_handed_heavy_spears_template.buffs.change_dodge_distance.external_optional_multiplier = 1.15
 Weapons.two_handed_heavy_spears_template.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+Weapons.two_handed_heavy_spears_template.max_fatigue_points = 6
 ---------------------------------------------------------------------Halberd-------------------------------------------------------------------------
 --Lights 1/2
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_left.total_time = 1.5
 Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_left.anim_time_scale = 1
 Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_left.buff_data = {
 				{
@@ -2590,45 +2624,48 @@ Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_left.buff
 Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_left.allowed_chain_actions = {
 				{
 					sub_action = "default_right",
-					start_time = 0.64,
-					end_time = 1.2,
+					start_time = 0.65,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_right",
-					start_time = 0.64,
-					end_time = 1.2,
+					start_time = 0.65,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.2,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.2,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.5,
+					start_time = 0.55,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.5,
+					start_time = 0.55,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
 Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_stab.damage_profile = "medium_slashing_smiter_stab_elf"
-Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_stab.anim_time_scale = 0.92
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_stab.height_mod = 3
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_stab.width_mod = 15
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_stab.total_time = 1.5
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_stab.anim_time_scale = 1
 Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_stab.buff_data = {
 				{
 					start_time = 0.1,
@@ -2647,44 +2684,46 @@ Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_stab.allo
 				{
 					sub_action = "default_last",
 					start_time = 0.5,
-					end_time = 1.1,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_last",
 					start_time = 0.5,
-					end_time = 1.1,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.1,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.1,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.46,
+					start_time = 0.4,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.46,
+					start_time = 0.4,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_stab.baked_sweep = nil
 --Light 3/PS
-Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_last.anim_time_scale = 0.8
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_last.total_time = 1.5
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_last.anim_time_scale = 1
 Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_last.buff_data = {
 				{
 					start_time = 0.03,
@@ -2702,39 +2741,39 @@ Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_last.buff
 Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_last.allowed_chain_actions = {
 				{
 					sub_action = "default",
-					start_time = 0.5,
-					end_time = 0.96,
+					start_time = 0.63,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.5,
-					end_time = 0.96,
+					start_time = 0.63,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.96,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.96,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.425,
+					start_time = 0.55,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.425,
+					start_time = 0.55,
 					action = "action_wield",
 					input = "action_wield"
 				}
@@ -2787,7 +2826,8 @@ Weapons.two_handed_halberds_template_1.actions.action_one.push.allowed_chain_act
 					input = "action_wield"
 				}
 			}
-Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_down.anim_time_scale = 0.8
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_down.total_time = 1.5
+Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_down.anim_time_scale = 1
 Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_down.buff_data = {
 				{
 					start_time = 0.03,
@@ -2805,45 +2845,48 @@ Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_down.buff
 Weapons.two_handed_halberds_template_1.actions.action_one.light_attack_down.allowed_chain_actions = {
 				{
 					sub_action = "default_last",
-					start_time = 0.5,
-					end_time = 0.96,
+					start_time = 0.63,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_last",
-					start_time = 0.5,
-					end_time = 0.96,
+					start_time = 0.63,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.96,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.96,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.425,
+					start_time = 0.55,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.425,
+					start_time = 0.55,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
 --Heavies
-Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.anim_time_scale = 1.04
+Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.height_mod = 3
+Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.width_mod = 15
+Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.total_time = 1.5
+Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.anim_time_scale = 1
 Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.buff_data = {
 				{
 					start_time = 0,
@@ -2862,7 +2905,7 @@ Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.allo
 				{
 					sub_action = "default_right",
 					start_time = 0.5,
-					end_time =  1.25,
+					end_time =  1,
 					action = "action_one",
 					release_required = "action_one_hold",
 					input = "action_one"
@@ -2870,20 +2913,20 @@ Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.allo
 				{
 					sub_action = "default_right",
 					start_time = 0.5,
-					end_time =  1.25,
+					end_time =  1,
 					action = "action_one",
 					release_required = "action_one_hold",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.25,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.25,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
@@ -2900,6 +2943,8 @@ Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.allo
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_stab.baked_sweep = nil
+Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.total_time = 1.5
 Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.anim_time_scale = 0.88
 Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.buff_data = {
 				{
@@ -2919,7 +2964,7 @@ Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.allo
 				{
 					sub_action = "default",
 					start_time = 0.5104,
-					end_time = 1.06,
+					end_time = 0.88,
 					action = "action_one",
 					release_required = "action_one_hold",
 					input = "action_one"
@@ -2927,32 +2972,32 @@ Weapons.two_handed_halberds_template_1.actions.action_one.heavy_attack_left.allo
 				{
 					sub_action = "default",
 					start_time = 0.5104,
-					end_time = 1.06,
+					end_time = 0.88,
 					action = "action_one",
 					release_required = "action_one_hold",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.06,
+					start_time = 0.88,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.06,
+					start_time = 0.88,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.51,
+					start_time = 0.44,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.6,
+					start_time = 0.5104,
 					action = "action_wield",
 					input = "action_wield"
 				}
@@ -3100,8 +3145,16 @@ Weapons.two_handed_halberds_template_1.actions.action_one.default_last.allowed_c
 				}
 			}
 --Dodge/Block/etc
-Weapons.two_handed_halberds_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.1
-Weapons.two_handed_halberds_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.1
+Weapons.two_handed_halberds_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.7,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.two_handed_halberds_template_1.dodge_count = 4
+Weapons.two_handed_halberds_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.15
+Weapons.two_handed_halberds_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.15
 --------------------------------------------------------------------2h Sword-------------------------------------------------------------------------------
 --Lights
 Weapons.two_handed_swords_template_1.actions.action_one.light_attack_left.total_time = 3
@@ -3149,13 +3202,13 @@ Weapons.two_handed_swords_template_1.actions.action_one.light_attack_left.allowe
 				},
 				{
 					sub_action = "default",
-					start_time = 0.82,
+					start_time = 0.9075,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.82,
+					start_time = 0.9075,
 					action = "action_wield",
 					input = "action_wield"
 				}
@@ -3205,13 +3258,13 @@ Weapons.two_handed_swords_template_1.actions.action_one.light_attack_right.allow
 				},
 				{
 					sub_action = "default",
-					start_time = 0.82,
+					start_time = 0.9075,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.82,
+					start_time = 0.9075,
 					action = "action_wield",
 					input = "action_wield"
 				}
@@ -3595,8 +3648,8 @@ Weapons.two_handed_swords_template_1.buffs.change_dodge_speed.external_optional_
 --------------------------------------------------------------------2h Longsword--------------------------------------------------------------------
 --Lights 1/2
 Weapons.bastard_sword_template.actions.action_one.light_attack_left.damage_profile = "medium_slashing_linesman"
-Weapons.bastard_sword_template.actions.action_one.light_attack_left.total_time = 1.95
-Weapons.bastard_sword_template.actions.action_one.light_attack_left.anim_time_scale = 1.5
+Weapons.bastard_sword_template.actions.action_one.light_attack_left.total_time = 1.8
+Weapons.bastard_sword_template.actions.action_one.light_attack_left.anim_time_scale = 1.2
 Weapons.bastard_sword_template.actions.action_one.light_attack_left.buff_data = {
 				{
 					start_time = 0,
@@ -3614,45 +3667,45 @@ Weapons.bastard_sword_template.actions.action_one.light_attack_left.buff_data = 
 Weapons.bastard_sword_template.actions.action_one.light_attack_left.allowed_chain_actions = {
 				{
 					sub_action = "default_right_pose",
-					start_time = 0.855,
-					end_time = 1.5,
+					start_time = 0.72,
+					end_time = 1.2,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_right_pose",
-					start_time = 0.855,
-					end_time = 1.5,
+					start_time = 0.72,
+					end_time = 1.2,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.5,
+					start_time = 1.2,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.5,
+					start_time = 1.2,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.75,
+					start_time = 0.66,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.75,
+					start_time = 0.66,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
-Weapons.bastard_sword_template.actions.action_one.light_attack_right.total_time = 1.95
-Weapons.bastard_sword_template.actions.action_one.light_attack_right.anim_time_scale = 1.3
+Weapons.bastard_sword_template.actions.action_one.light_attack_right.total_time = 1.8
+Weapons.bastard_sword_template.actions.action_one.light_attack_right.anim_time_scale = 1.2
 Weapons.bastard_sword_template.actions.action_one.light_attack_right.buff_data = {
 				{
 					start_time = 0,
@@ -3671,38 +3724,38 @@ Weapons.bastard_sword_template.actions.action_one.light_attack_right.allowed_cha
 				{
 					sub_action = "default_left_uppercut",
 					start_time = 0.78,
-					end_time = 1.3,
+					end_time = 1.2,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left_uppercut",
 					start_time = 0.78,
-					end_time = 1.3,
+					end_time = 1.2,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.3,
+					start_time = 1.2,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.3,
+					start_time = 1.2,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.65,
+					start_time = 0.66,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.65,
+					start_time = 0.66,
 					action = "action_wield",
 					input = "action_wield"
 				}
@@ -3728,14 +3781,14 @@ Weapons.bastard_sword_template.actions.action_one.light_attack_uppercut.buff_dat
 Weapons.bastard_sword_template.actions.action_one.light_attack_uppercut.allowed_chain_actions = {
 				{
 					sub_action = "default",
-					start_time = 0.78,
+					start_time = 0.72,
 					end_time = 1.2,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.78,
+					start_time = 0.72,
 					end_time = 1.2,
 					action = "action_one",
 					input = "action_one_hold"
@@ -3834,14 +3887,14 @@ Weapons.bastard_sword_template.actions.action_one.light_attack_bopp.buff_data = 
 Weapons.bastard_sword_template.actions.action_one.light_attack_bopp.allowed_chain_actions = {
 				{
 					sub_action = "default_left_down_pose",
-					start_time = 0.78,
+					start_time = 0.72,
 					end_time = 1.2,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left_down_pose",
-					start_time = 0.78,
+					start_time = 0.72,
 					end_time = 1.2,
 					action = "action_one",
 					input = "action_one_hold"
@@ -3872,6 +3925,7 @@ Weapons.bastard_sword_template.actions.action_one.light_attack_bopp.allowed_chai
 				}
 			}
 --Heavies
+Weapons.bastard_sword_template.actions.action_one.heavy_attack_left.hit_stop_anim = nil
 Weapons.bastard_sword_template.actions.action_one.heavy_attack_left.total_time = 1.95
 Weapons.bastard_sword_template.actions.action_one.heavy_attack_left.anim_time_scale = 1.3
 Weapons.bastard_sword_template.actions.action_one.heavy_attack_left.buff_data = {
@@ -3930,6 +3984,7 @@ Weapons.bastard_sword_template.actions.action_one.heavy_attack_left.allowed_chai
 					input = "action_wield"
 				}
 			}
+Weapons.bastard_sword_template.actions.action_one.heavy_attack_right.hit_stop_anim =nil
 Weapons.bastard_sword_template.actions.action_one.heavy_attack_right.total_time = 1.95
 Weapons.bastard_sword_template.actions.action_one.heavy_attack_right.anim_time_scale = 1.3
 Weapons.bastard_sword_template.actions.action_one.heavy_attack_right.buff_data = {
@@ -3988,6 +4043,7 @@ Weapons.bastard_sword_template.actions.action_one.heavy_attack_right.allowed_cha
 					input = "action_wield"
 				}
 			}
+Weapons.bastard_sword_template.actions.action_one.heavy_attack_down.hit_stop_anim = nil
 Weapons.bastard_sword_template.actions.action_one.heavy_attack_down.total_time = 1.5
 Weapons.bastard_sword_template.actions.action_one.heavy_attack_down.anim_time_scale = 1
 Weapons.bastard_sword_template.actions.action_one.heavy_attack_down.buff_data = {
@@ -4255,6 +4311,7 @@ Weapons.bastard_sword_template.actions.action_two.default.buff_data = {
 					buff_name = "planted_decrease_movement"
 				}
 			}
+Weapons.bastard_sword_template.dodge_count = 3
 Weapons.bastard_sword_template.buffs.change_dodge_distance.external_optional_multiplier = 1.1
 Weapons.bastard_sword_template.buffs.change_dodge_speed.external_optional_multiplier = 1.1
 --------------------------------------------------------------------2h Hammer-----------------------------------------------------------------------------
@@ -4801,6 +4858,13 @@ Weapons.two_handed_hammers_template_1.actions.action_one.default_right.allowed_c
 				}
 			}
 --Dodge/Block/etc
+Weapons.two_handed_hammers_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.two_handed_hammers_template_1.dodge_count = 3
 Weapons.two_handed_hammers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.1
 Weapons.two_handed_hammers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.1
@@ -5391,6 +5455,13 @@ Weapons.two_handed_swords_executioner_template_1.actions.action_one.default_left
 				}
 			}
 --Dodge/Block/etc
+Weapons.two_handed_swords_executioner_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.two_handed_swords_executioner_template_1.dodge_count = 3
 Weapons.two_handed_swords_executioner_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.1
 Weapons.two_handed_swords_executioner_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.1
@@ -6346,7 +6417,9 @@ Weapons.one_hand_axe_template_2.actions.action_two.default.buff_data = {
 					buff_name = "planted_decrease_movement"
 				}
 			}
-Weapons.one_hand_axe_template_2.dodge_count = 5
+Weapons.one_hand_axe_template_2.dodge_count = 6
+Weapons.one_hand_axe_template_2.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.one_hand_axe_template_2.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 --------------------------------------------------------------------1h Hammer-----------------------------------------------------------------------------
 --Lights 1/2
 Weapons.one_handed_hammer_template_2.actions.action_one.light_attack_left.anim_time_scale = 1.2
@@ -6998,7 +7071,9 @@ Weapons.one_handed_hammer_template_2.actions.action_two.default.buff_data = {
 				}
 			}
 Weapons.one_handed_hammer_template_2.max_fatigue_points = 6
-Weapons.one_handed_hammer_template_2.dodge_count = 5
+Weapons.one_handed_hammer_template_2.dodge_count = 6
+Weapons.one_handed_hammer_template_2.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.one_handed_hammer_template_2.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 -------------------------------------------------------Dual Axes----------------------------------------------------------------------------------
 --Light 1/2/3/4
 Weapons.dual_wield_axes_template_1.actions.action_one.light_attack_left.anim_time_scale = 1.4
@@ -7785,7 +7860,16 @@ Weapons.dual_wield_axes_template_1.actions.action_one.default_last.allowed_chain
 				}
 			}
 --Dodge/Block/etc
-Weapons.dual_wield_axes_template_1.max_fatigue_points = 6
+Weapons.dual_wield_axes_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.dual_wield_axes_template_1.dodge_count = 5
+Weapons.dual_wield_axes_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.dual_wield_axes_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 -------------------------------------------------------Dual Hammers------------------------------------------------------------------------------
 --Lights 1/2/3
 Weapons.dual_wield_hammers_template.actions.action_one.light_attack_left.damage_profile = "DH_light_attack_dual"
@@ -8433,10 +8517,17 @@ Weapons.dual_wield_hammers_template.actions.action_one.default_left.allowed_chai
 				}
 			}
 --Dodge/Block/etc
+Weapons.dual_wield_hammers_template.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.dual_wield_hammers_template.max_fatigue_points = 6
-Weapons.dual_wield_hammers_template.dodge_count = 4
-Weapons.dual_wield_hammers_template.buffs.change_dodge_distance.external_optional_multiplier = 1.15
-Weapons.dual_wield_hammers_template.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+Weapons.dual_wield_hammers_template.dodge_count = 5
+Weapons.dual_wield_hammers_template.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.dual_wield_hammers_template.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 -------------------------------------------------2h Pickaxe-------------------------------------------------------------------------------------
 --Lights 1/2
 Weapons.two_handed_picks_template_1.actions.action_one.light_attack_left.damage_profile = "medium_slashing_axe_linesman"
@@ -9099,11 +9190,19 @@ Weapons.two_handed_picks_template_1.actions.action_one.default_right.allowed_cha
 				}
 			}
 --Dodge/Block/etc
-Weapons.two_handed_picks_template_1.dodge_count = 3
-Weapons.two_handed_picks_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.1
-Weapons.two_handed_picks_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.1
+Weapons.two_handed_picks_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.7,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.two_handed_picks_template_1.dodge_count = 4
+Weapons.two_handed_picks_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.15
+Weapons.two_handed_picks_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.15
 ---------------------------------------------------------2h Greataxe---------------------------------------------------------------------------------------
---Lights 1/2/3
+--Lights 1/2
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_left.total_time = 1.5
 Weapons.two_handed_axes_template_1.actions.action_one.light_attack_left.anim_time_scale = 1
 Weapons.two_handed_axes_template_1.actions.action_one.light_attack_left.buff_data = {
 				{
@@ -9122,44 +9221,45 @@ Weapons.two_handed_axes_template_1.actions.action_one.light_attack_left.buff_dat
 Weapons.two_handed_axes_template_1.actions.action_one.light_attack_left.allowed_chain_actions = {
 				{
 					sub_action = "default_left",
-					start_time = 0.65,
-					end_time = 1.2,
+					start_time = 0.60,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left",
-					start_time = 0.65,
-					end_time = 1.2,
+					start_time = 0.60,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.2,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.2,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.6,
+					start_time = 0.55,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.6,
+					start_time = 0.55,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
-Weapons.two_handed_axes_template_1.actions.action_one.light_attack_right.anim_time_scale = 1
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_right.total_time = 1.65
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_right.anim_time_scale = 1.1
 Weapons.two_handed_axes_template_1.actions.action_one.light_attack_right.buff_data = {
 				{
 					start_time = 0,
@@ -9177,99 +9277,44 @@ Weapons.two_handed_axes_template_1.actions.action_one.light_attack_right.buff_da
 Weapons.two_handed_axes_template_1.actions.action_one.light_attack_right.allowed_chain_actions = {
 				{
 					sub_action = "default_right",
-					start_time = 0.6,
-					end_time = 1.2,
+					start_time = 0.715,
+					end_time = 1.1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_right",
-					start_time = 0.6,
-					end_time = 1.2,
+					start_time = 0.715,
+					end_time = 1.1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.2,
+					start_time = 1.1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.2,
+					start_time = 1.1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.6,
+					start_time = 0.605,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.6,
+					start_time = 0.605,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
-Weapons.two_handed_axes_template_1.actions.action_one.light_attack_up.anim_time_scale = 1
-Weapons.two_handed_axes_template_1.actions.action_one.light_attack_up.buff_data = {
-				{
-					start_time = 0,
-					external_multiplier = 1.5,
-					end_time = 0.31,
-					buff_name = "planted_decrease_movement"
-				},
-				{
-					start_time = 0.31,
-					external_multiplier = 0.5,
-					end_time = 0.6,
-					buff_name = "planted_decrease_movement"
-				}
-			}
-Weapons.two_handed_axes_template_1.actions.action_one.light_attack_up.allowed_chain_actions = {
-				{
-					sub_action = "default",
-					start_time = 0.74,
-					end_time = 1.2,
-					action = "action_one",
-					input = "action_one"
-				},
-				{
-					sub_action = "default",
-					start_time = 0.74,
-					end_time = 1.2,
-					action = "action_one",
-					input = "action_one_hold"
-				},
-				{
-					sub_action = "default",
-					start_time = 1.2,
-					action = "action_one",
-					input = "action_one"
-				},
-				{
-					sub_action = "default",
-					start_time = 1.2,
-					action = "action_one",
-					input = "action_one_hold"
-				},
-				{
-					sub_action = "default",
-					start_time = 0.6,
-					action = "action_two",
-					input = "action_two_hold"
-				},
-				{
-					sub_action = "default",
-					start_time = 0.6,
-					action = "action_wield",
-					input = "action_wield"
-				}
-			}
---Pushstab
+--Pushstab/Light 3
 Weapons.two_handed_axes_template_1.actions.action_one.push.buff_data = {
 				{
 					start_time = 0,
@@ -9320,6 +9365,7 @@ Weapons.two_handed_axes_template_1.actions.action_one.push.allowed_chain_actions
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_bopp.total_time = 1.8
 Weapons.two_handed_axes_template_1.actions.action_one.light_attack_bopp.anim_time_scale = 1.2
 Weapons.two_handed_axes_template_1.actions.action_one.light_attack_bopp.buff_data = {
 				{
@@ -9339,26 +9385,26 @@ Weapons.two_handed_axes_template_1.actions.action_one.light_attack_bopp.allowed_
 				{
 					sub_action = "default_left",
 					start_time = 0.66,
-					end_time = 1.44,
+					end_time = 1.2,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left",
 					start_time = 0.66,
-					end_time = 1.44,
+					end_time = 1.2,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.44,
+					start_time = 1.2,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.44,
+					start_time = 1.2,
 					action = "action_one",
 					input = "action_one_hold"
 				},
@@ -9375,10 +9421,69 @@ Weapons.two_handed_axes_template_1.actions.action_one.light_attack_bopp.allowed_
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_up.damage_profile = "medium_slashing_axe_linesman"
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_up.total_time = 1.8
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_up.anim_time_scale = 1.2
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_up.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.3,
+					external_multiplier = 0.7,
+					end_time = 0.5,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_up.allowed_chain_actions = {
+				{
+					sub_action = "default",
+					start_time = 0.66,
+					end_time = 1.2,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.66,
+					end_time = 1.2,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.6,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.6,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.two_handed_axes_template_1.actions.action_one.light_attack_up.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 --Heavies
-Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_left.hit_shield_stop_anim = "attack_hit_shield"
+Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_left.hit_stop_anim =nil
 Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_left.slide_armour_hit = true
 Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_left.range_mod = 1.65
+Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_left.total_time = 1.5
 Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_left.anim_time_scale = 1
 Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_left.buff_data = {
 				{
@@ -9437,9 +9542,10 @@ Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_left.allowed_
 				}
 			}
 Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_left.hit_mass_count = HEAVY_LINESMAN_HIT_MASS_COUNT
-Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_right.hit_shield_stop_anim = "attack_hit_shield"
+Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_right.hit_stop_anim =nil
 Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_right.slide_armour_hit = true
 Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_right.range_mod = 1.65
+Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_right.total_time = 1.5
 Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_right.anim_time_scale = 1
 Weapons.two_handed_axes_template_1.actions.action_one.heavy_attack_right.buff_data = {
 				{
@@ -10409,6 +10515,13 @@ Weapons.two_handed_cog_hammers_template_1.actions.action_one.default_last.allowe
 				}
 			}
 --Dodge/Block/etc
+Weapons.two_handed_cog_hammers_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.two_handed_cog_hammers_template_1.dodge_count = 3
 Weapons.two_handed_cog_hammers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.1
 Weapons.two_handed_cog_hammers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.1
@@ -11184,7 +11297,9 @@ Weapons.we_one_hand_axe_template.actions.action_two.default.buff_data = {
 					buff_name = "planted_decrease_movement"
 				}
 			}
-Weapons.we_one_hand_axe_template.dodge_count = 5
+Weapons.we_one_hand_axe_template.dodge_count = 6
+Weapons.we_one_hand_axe_template.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.we_one_hand_axe_template.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 --------------------------------------------------------------------1h Sword------------------------------------------------------------------------
 --Lights 1/2
 Weapons.we_one_hand_sword_template_1.actions.action_one.light_attack_left.damage_profile = "light_slashing_linesman_finesse"
@@ -11736,9 +11851,16 @@ Weapons.we_one_hand_sword_template_1.actions.action_one.default_left.allowed_cha
 				}
 			}
 --Dodge/Block/etc
-Weapons.we_one_hand_sword_template_1.dodge_count = 5
-Weapons.we_one_hand_sword_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.2
-Weapons.we_one_hand_sword_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.2
+Weapons.we_one_hand_sword_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.9,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.we_one_hand_sword_template_1.dodge_count = 6
+Weapons.we_one_hand_sword_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.we_one_hand_sword_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 Weapons.we_one_hand_sword_template_1.outer_block_fatigue_point_multiplier  = 2
 -------------------------------------------------------------------Dual Daggers---------------------------------------------------------------------
 --Simple Template Changes
@@ -12438,10 +12560,18 @@ Weapons.dual_wield_daggers_template_1.actions.action_one.default_stab.allowed_ch
 				}
 			}
 --Dodge/Block/etc
-Weapons.dual_wield_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
-Weapons.dual_wield_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
+Weapons.dual_wield_daggers_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.dual_wield_daggers_template_1.max_fatigue_points = 6
 Weapons.dual_wield_daggers_template_1.block_angle = 90
+Weapons.dual_wield_daggers_template_1.dodge_count = 5
+Weapons.dual_wield_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.dual_wield_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 -----------------------------------------------------------------Sword and Dagger-------------------------------------------------------------------------
 --Lights/Pushstab
 Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_right_first.total_time = 2.25
@@ -12556,6 +12686,10 @@ Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_right
 					input = "action_wield"
 				}
 			}
+--Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_stab_left.damage_profile = "light_slashing_smiter_diag_dual_L"
+--Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_stab_left.weapon_action_hand = "right"
+--Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_stab_left.baked_sweep = nil
+--Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_stab_left.anim_event = "attack_swing_stab"
 Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_stab_left.additional_critical_strike_chance = nil
 Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_stab_left.total_time = 2.85
 Weapons.dual_wield_sword_dagger_template_1.actions.action_one.light_attack_stab_left.anim_time_scale = 1.9
@@ -13134,9 +13268,16 @@ Weapons.dual_wield_sword_dagger_template_1.actions.action_one.default_left_last.
 				}
 			}
 --Dodge/Block/etc
-Weapons.dual_wield_sword_dagger_template_1.dodge_count = 4
-Weapons.dual_wield_sword_dagger_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.15
-Weapons.dual_wield_sword_dagger_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+Weapons.dual_wield_sword_dagger_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.dual_wield_sword_dagger_template_1.dodge_count = 5
+Weapons.dual_wield_sword_dagger_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.dual_wield_sword_dagger_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 Weapons.dual_wield_sword_dagger_template_1.block_fatigue_point_multiplier = 0.5
 Weapons.dual_wield_sword_dagger_template_1.outer_block_fatigue_point_multiplier  = 2
 --------------------------------------------------------------------Dual Swords---------------------------------------------------------------------
@@ -13774,9 +13915,16 @@ Weapons.dual_wield_swords_template_1.actions.action_one.default_left.allowed_cha
 				}
 			}
 --Dodge/Block/etc
-Weapons.dual_wield_swords_template_1.dodge_count = 4
-Weapons.dual_wield_swords_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.15
-Weapons.dual_wield_swords_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+Weapons.dual_wield_swords_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.dual_wield_swords_template_1.dodge_count = 5
+Weapons.dual_wield_swords_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.dual_wield_swords_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 Weapons.dual_wield_swords_template_1.outer_block_fatigue_point_multiplier  = 2
 ---------------------------------------------------------------------Elf Spear-----------------------------------------------------------------------
 --Default States
@@ -13970,8 +14118,12 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.default_last_2.allow
 				}
 			}
 --Lights 1/2/4
-Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.total_time = 1.33875
-Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.anim_time_scale = 0.8925
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.height_mod = 3
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.width_mod = 15
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.range_mod = 1.6
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.range_mod_add = nil
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.total_time = 1.5
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.anim_time_scale = 1
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.buff_data = {
 				{
 					start_time = 0,
@@ -13989,54 +14141,49 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.bu
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.allowed_chain_actions = {
 				{
 					sub_action = "default_last_1",
-					start_time = 0.45,
-					end_time = 0.8925,
+					start_time = 0.5,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_last_1",
-					start_time = 0.45,
-					end_time = 0.8925,
+					start_time = 0.5,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.8925,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.8925,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.357,
+					start_time = 0.4,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.357,
+					start_time = 0.4,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.hit_mass_count = nil
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.height_mod = 2
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.width_mod = 2
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.range_mod = 1.5
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.damage_window_start = 0.34
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.damage_window_end = 0.4
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.use_precision_sweep = true
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.dedicated_target_range = 2
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.sweep_z_offset = 0.4
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.range_mod_add = nil
---Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.baked_sweep = nil
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_left.baked_sweep = nil
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.height_mod = 3
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.width_mod = 15
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.range_mod = 1.6
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.range_mod_add = nil
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.total_time = 1.33875
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.anim_time_scale = 0.8925
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.buff_data = {
@@ -14056,14 +14203,14 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.allowed_chain_actions = {
 				{
 					sub_action = "default_left",
-					start_time = 0.425,
+					start_time = 0.4284,
 					end_time = 0.8925,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left",
-					start_time = 0.425,
+					start_time = 0.4284,
 					end_time = 0.8925,
 					action = "action_one",
 					input = "action_one_hold"
@@ -14093,6 +14240,11 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_1.baked_sweep = nil
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_2.height_mod = 3
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_2.width_mod = 15
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_2.range_mod = 1.6
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_2.range_mod_add = nil
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_2.total_time = 1.46625
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_2.anim_time_scale = 0.9775
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_2.buff_data = {
@@ -14149,9 +14301,15 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_2.
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_stab_2.baked_sweep = nil
 --Lights 3/Pushstab
-Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.total_time = 1.53
-Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.anim_time_scale = 1.02
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.anim_event = "push_stab"
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.range_mod = 1.5
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.range_mod_add = nil
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.damage_window_start = 0.23
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.damage_window_end = 0.35
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.total_time = 1.5
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.anim_time_scale = 1
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.buff_data = {
 				{
 					start_time = 0,
@@ -14169,43 +14327,44 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.b
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.allowed_chain_actions = {
 				{
 					sub_action = "default_last_2",
-					start_time = 0.51,
-					end_time = 1.02,
+					start_time = 0.5,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_last_2",
-					start_time = 0.51,
-					end_time = 1.02,
+					start_time = 0.5,
+					end_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.02,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.02,
+					start_time = 1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.408,
+					start_time = 0.4,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.408,
+					start_time = 0.4,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_right.baked_sweep = nil
 Weapons.two_handed_spears_elf_template_1.actions.action_one.push.buff_data = {
 				{
 					start_time = 0,
@@ -14254,8 +14413,13 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.push.allowed_chain_a
 					input = "action_wield"
 				}
 			}
-Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.total_time = 1.53
-Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.anim_time_scale = 1.02
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.anim_event = "attack_swing_heavy_right"
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.range_mod = 1.5
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.range_mod_add = nil
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.damage_window_start = 0.3
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.damage_window_end = 0.41
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.total_time = 1.65
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.anim_time_scale = 1.1
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.buff_data = {
 				{
 					start_time = 0,
@@ -14273,45 +14437,49 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.bu
 Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.allowed_chain_actions = {
 				{
 					sub_action = "default_last_1",
-					start_time = 0.51,
-					end_time = 1.02,
+					start_time = 0.55,
+					end_time = 1.1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_last_1",
-					start_time = 0.51,
-					end_time = 1.02,
+					start_time = 0.55,
+					end_time = 1.1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.02,
+					start_time = 1.1,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.02,
+					start_time = 1.1,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.408,
+					start_time = 0.44,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.408,
+					start_time = 0.44,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_spears_elf_template_1.actions.action_one.light_attack_bopp.baked_sweep = nil
 --Heavies
-Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_left.anim_time_scale = 0.9775
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_left.range_mod = 1.5
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_left.range_mod_add = nil
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_left.total_time = 1.8
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_left.anim_time_scale = 1.2
 Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_left.buff_data = {
 				{
 					start_time = 0,
@@ -14329,46 +14497,51 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_left.bu
 Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_left.allowed_chain_actions = {
 				{
 					sub_action = "default_last_1",
-					start_time = 0.56695,
-					end_time = 0.9775,
+					start_time = 0.696,
+					end_time = 1.2,
 					action = "action_one",
 					release_required = "action_one_hold",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_last_1",
-					start_time = 0.56695,
-					end_time = 0.9775,
+					start_time = 0.696,
+					end_time = 1.2,
 					action = "action_one",
 					release_required = "action_one_hold",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.9775,
+					start_time = 1.2,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.9775,
+					start_time = 1.2,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.4692,
+					start_time = 0.6,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.56695,
+					start_time = 0.696,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
-Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.anim_time_scale = 0.935
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.height_mod = 3
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.width_mod = 15
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.range_mod = 1.8
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.range_mod_add = nil
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.total_time = 1.35
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.anim_time_scale = 0.9
 Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.buff_data = {
 				{
 					start_time = 0,
@@ -14386,46 +14559,47 @@ Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.bu
 Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.allowed_chain_actions = {
 				{
 					sub_action = "default",
-					start_time = 0.4488,
-					end_time = 0.935,
+					start_time = 0.45,
+					end_time = 0.9,
 					action = "action_one",
 					release_required = "action_one_hold",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.4488,
-					end_time = 0.935,
+					start_time = 0.45,
+					end_time = 0.9,
 					action = "action_one",
 					release_required = "action_one_hold",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.935,
+					start_time = 0.9,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.935,
+					start_time = 0.9,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.3553,
+					start_time = 0.36,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.4488,
+					start_time = 0.45,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
 Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.hit_mass_count = nil
+Weapons.two_handed_spears_elf_template_1.actions.action_one.heavy_attack_stab.baked_sweep = nil
 --Dodge/Block/etc
 Weapons.two_handed_spears_elf_template_1.actions.action_two.default.buff_data = {
 				{
@@ -14435,6 +14609,9 @@ Weapons.two_handed_spears_elf_template_1.actions.action_two.default.buff_data = 
 				}
 			}
 Weapons.two_handed_spears_elf_template_1.dodge_count = 4
+Weapons.two_handed_spears_elf_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.15
+Weapons.two_handed_spears_elf_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+Weapons.two_handed_spears_elf_template_1.block_angle = 90
 ---------------------------------------------------------------------2h Sword-----------------------------------------------------------------------
 --Lights 1/2
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.light_attack_left_upward.anim_time_scale = 1.134
@@ -14455,14 +14632,14 @@ Weapons.two_handed_swords_wood_elf_template.actions.action_one.light_attack_left
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.light_attack_left_upward.allowed_chain_actions = {
 				{
 					sub_action = "default_left",
-					start_time = 0.68,
+					start_time = 0.6804,
 					end_time = 1.134,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left",
-					start_time = 0.68,
+					start_time = 0.6804,
 					end_time = 1.134,
 					action = "action_one",
 					input = "action_one_hold"
@@ -14481,13 +14658,13 @@ Weapons.two_handed_swords_wood_elf_template.actions.action_one.light_attack_left
 				},
 				{
 					sub_action = "default",
-					start_time = 0.57,
+					start_time = 0.6237,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.57,
+					start_time = 0.6237,
 					action = "action_wield",
 					input = "action_wield"
 				}
@@ -14510,14 +14687,14 @@ Weapons.two_handed_swords_wood_elf_template.actions.action_one.light_attack_righ
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.light_attack_right_upward.allowed_chain_actions = {
 				{
 					sub_action = "default_right",
-					start_time = 0.68,
+					start_time = 0.6804,
 					end_time = 1.134,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_right",
-					start_time = 0.68,
+					start_time = 0.6804,
 					end_time = 1.134,
 					action = "action_one",
 					input = "action_one_hold"
@@ -14536,13 +14713,13 @@ Weapons.two_handed_swords_wood_elf_template.actions.action_one.light_attack_righ
 				},
 				{
 					sub_action = "default",
-					start_time = 0.57,
+					start_time = 0.6237,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.57,
+					start_time = 0.6237,
 					action = "action_wield",
 					input = "action_wield"
 				}
@@ -14656,7 +14833,10 @@ Weapons.two_handed_swords_wood_elf_template.actions.action_one.light_attack_bopp
 			}
 --Heavies
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.damage_profile = "heavy_slashing_smiter_stab_polearm"
-Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.range_mod = 1.5
+Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.height_mod = 3
+Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.width_mod = 15
+Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.range_mod = 1.95
+Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.range_mod_add = nil
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.anim_time_scale = 1.6
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.buff_data = {
 				{
@@ -14706,6 +14886,7 @@ Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down
 					input = "action_wield"
 				}
 			}
+Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_first.baked_sweep = nil
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_second.damage_profile = "heavy_slashing_linesman"
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_second.slide_armour_hit = true
 Weapons.two_handed_swords_wood_elf_template.actions.action_one.heavy_attack_down_second.anim_time_scale = 1.6
@@ -14904,6 +15085,13 @@ Weapons.two_handed_swords_wood_elf_template.actions.action_one.default_right.all
 				}
 			}
 --Dodge/Block/etc
+Weapons.two_handed_swords_wood_elf_template.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.7,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.two_handed_swords_wood_elf_template.dodge_count = 4
 Weapons.two_handed_swords_wood_elf_template.buffs.change_dodge_distance.external_optional_multiplier = 1.15
 Weapons.two_handed_swords_wood_elf_template.buffs.change_dodge_speed.external_optional_multiplier = 1.15
@@ -15449,6 +15637,14 @@ Weapons.two_handed_axes_template_2.actions.action_one.default_right.allowed_chai
 				}
 			}
 --Dodge/Block/etc
+Weapons.two_handed_axes_template_2.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.two_handed_axes_template_2.dodge_count = 3
 Weapons.two_handed_axes_template_2.buffs.change_dodge_distance.external_optional_multiplier = 1.1
 Weapons.two_handed_axes_template_2.buffs.change_dodge_speed.external_optional_multiplier = 1.1
 -----------------------------------------------Ranged---------------------------------------------------------
@@ -16153,7 +16349,9 @@ Weapons.one_hand_axe_template_1.actions.action_two.default.buff_data = {
 					buff_name = "planted_decrease_movement"
 				}
 			}
-Weapons.one_hand_axe_template_1.dodge_count = 5
+Weapons.one_hand_axe_template_1.dodge_count = 6
+Weapons.one_hand_axe_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.one_hand_axe_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 -------------------------------------------------------------Falchion-----------------------------------------------------------------------------
 --Lights 1/2
 Weapons.one_hand_falchion_template_1.actions.action_one.light_attack_left.damage_profile = "light_slashing_linesman_finesse"
@@ -16704,9 +16902,16 @@ Weapons.one_hand_falchion_template_1.actions.action_one.default_down.allowed_cha
 				}
 			}
 --Dodge/Block/etc
-Weapons.one_hand_falchion_template_1.dodge_count = 5
-Weapons.one_hand_falchion_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.2
-Weapons.one_hand_falchion_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.2
+Weapons.one_hand_falchion_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.9,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_hand_falchion_template_1.dodge_count = 6
+Weapons.one_hand_falchion_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.one_hand_falchion_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 --------------------------------------------------------------1h Skullsplitter--------------------------------------------------------------------
 --Lights 1/2
 Weapons.one_handed_hammer_priest_template.actions.action_one.light_attack_01.total_time = 1.8
@@ -17357,94 +17562,224 @@ Weapons.one_handed_hammer_priest_template.actions.action_one.default_04.allowed_
 				}
 			}
 --Dodge/Block/etc
+Weapons.one_handed_hammer_priest_template.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.9,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.one_handed_hammer_priest_template.max_fatigue_points = 6
-Weapons.one_handed_hammer_priest_template.dodge_count = 5
+Weapons.one_handed_hammer_priest_template.dodge_count = 6
+Weapons.one_handed_hammer_priest_template.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.one_handed_hammer_priest_template.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 -------------------------------------------------Rapier-------------------------------------------------------------------------------------------
+--Simple Template Changes
+DamageProfileTemplates.medium_fencer_stab.armor_modifier.attack = {1, 0.4, 1.5, 1,  1, 0.4}
+DamageProfileTemplates.medium_fencer_stab_charged.default_target.power_distribution = {attack = 0.579, impact = 0.125}
 --Lights 1/2/3
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_left.range_mod = 1.3
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_left.total_time = 1.68
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_left.anim_time_scale = 1.12
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_left.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.18,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.18,
+					external_multiplier = 0.9,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.fencing_sword_template_1.actions.action_one.light_attack_left.allowed_chain_actions = {
 				{
 					sub_action = "default_right",
-					start_time = 0.4,
+					start_time = 0.3696,
+					end_time = 1.008,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_right",
+					start_time = 0.3696,
+					end_time = 1.008,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.008,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0,
+					start_time = 1.008,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.336,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.4,
+					start_time = 0.336,
 					action = "action_wield",
 					input = "action_wield"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.4,
+					start_time = 0.336,
 					action = "action_three",
 					input = "action_three"
 				}
 			}
 Weapons.fencing_sword_template_1.actions.action_one.light_attack_left.hit_mass_count = LINESMAN_HIT_MASS_COUNT
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_right.range_mod = 1.3
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_right.total_time = 1.8
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_right.anim_time_scale = 1.2
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_right.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.18,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.18,
+					external_multiplier = 0.9,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.fencing_sword_template_1.actions.action_one.light_attack_right.allowed_chain_actions = {
 				{
 					sub_action = "default_left",
-					start_time = 0.4,
+					start_time = 0.456,
+					end_time = 1.08,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_left",
+					start_time = 0.456,
+					end_time = 1.08,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.08,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0,
+					start_time = 1.08,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.36,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.4,
+					start_time = 0.36,
 					action = "action_wield",
 					input = "action_wield"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.4,
+					start_time = 0.36,
 					action = "action_three",
 					input = "action_three"
 				}
 			}
 Weapons.fencing_sword_template_1.actions.action_one.light_attack_right.hit_mass_count = LINESMAN_HIT_MASS_COUNT
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_left_last.range_mod = 1.3
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_left_last.total_time = 2.4
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_left_last.anim_time_scale = 1.6
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_left_last.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.18,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.18,
+					external_multiplier = 0.9,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.fencing_sword_template_1.actions.action_one.light_attack_left_last.allowed_chain_actions = {
 				{
 					sub_action = "default",
-					start_time = 0.6,
-					action = "action_wield",
-					input = "action_wield"
-				},
-				{
-					sub_action = "default",
-					start_time = 0.6,
+					start_time = 0.688,
+					end_time = 1.44,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0,
+					start_time = 0.688,
+					end_time = 1.44,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.44,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.44,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.48,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.6,
+					start_time = 0.48,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.48,
 					action = "action_three",
 					input = "action_three"
 				}
 			}
 Weapons.fencing_sword_template_1.actions.action_one.light_attack_left_last.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 --Pushstab
-
 Weapons.fencing_sword_template_1.actions.action_one.push.fatigue_cost = nil
+Weapons.fencing_sword_template_1.actions.action_one.push.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.25,
+					end_time = 0.2,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
 Weapons.fencing_sword_template_1.actions.action_one.push.allowed_chain_actions = {
 				{
 					sub_action = "default",
@@ -17487,19 +17822,49 @@ Weapons.fencing_sword_template_1.actions.action_one.push.allowed_chain_actions =
 					input = "action_wield"
 				}
 			}
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.range_mod = 1.3
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.total_time = 2.04
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.anim_time_scale = 1.36
+Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.18,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.18,
+					external_multiplier = 0.9,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.allowed_chain_actions = {
 				{
-					sub_action = "default",
+					sub_action = "default_left",
 					start_time = 0.35,
+					end_time = 1.224,
 					action = "action_one",
-					end_time = 1.2,
+					input = "action_one"
+				},
+				{
+					sub_action = "default_left",
+					start_time = 0.35,
+					end_time = 1.224,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.224,
+					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.55,
+					start_time = 1.224,
 					action = "action_one",
-					input = "action_one"
+					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
@@ -17509,7 +17874,7 @@ Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.allowed_ch
 				},
 				{
 					sub_action = "default",
-					start_time = 0.4,
+					start_time = 0.35,
 					action = "action_three",
 					input = "action_three"
 				},
@@ -17522,16 +17887,334 @@ Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.allowed_ch
 			}
 Weapons.fencing_sword_template_1.actions.action_one.light_attack_bopp.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 --Heavies
-Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.allowed_chain_actions[5].start_time = 0.3
-Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.allowed_chain_actions[6].start_time = 0.4
-Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.allowed_chain_actions[4].start_time = 0.3
-Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.allowed_chain_actions[5].start_time = 0.3
-Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.allowed_chain_actions[6].start_time = 0.4
---Combo Changes/Default State
-Weapons.fencing_sword_template_1.actions.action_one.default.allowed_chain_actions[2].end_time = 0.55
-Weapons.fencing_sword_template_1.actions.action_one.default_right.allowed_chain_actions[2].end_time = 0.55
-Weapons.fencing_sword_template_1.actions.action_one.default_left.allowed_chain_actions[2].end_time = 0.55
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.height_mod = 1.5
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.width_mod = 9
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.range_mod = 1.3
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.total_time = 1.5
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.anim_time_scale = 1
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 2,
+					end_time = 0.2,
+					buff_name = "planted_fast_decrease_movement"
+				},
+				{
+					start_time = 0.2,
+					external_multiplier = 0.5,
+					end_time = 0.3,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.allowed_chain_actions = {
+				{
+					sub_action = "default_left",
+					start_time = 0.3,
+					end_time = 1,
+					action = "action_one",
+					release_required = "action_one_hold",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_left",
+					start_time = 0.3,
+					end_time = 1,
+					action = "action_one",
+					release_required = "action_one_hold",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.3,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.3,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.3,
+					action = "action_three",
+					input = "action_three"
+				}
+			}
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack.baked_sweep = nil
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.height_mod = 1.5
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.width_mod = 9
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.range_mod = 1.3
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.total_time = 1.5
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.anim_time_scale = 1
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 2,
+					end_time = 0.2,
+					buff_name = "planted_fast_decrease_movement"
+				},
+				{
+					start_time = 0.2,
+					external_multiplier = 0.5,
+					end_time = 0.3,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.allowed_chain_actions = {
+				{
+					sub_action = "default_left",
+					start_time = 0.3,
+					end_time = 1,
+					action = "action_one",
+					release_required = "action_one_hold",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_left",
+					start_time = 0.3,
+					end_time = 1,
+					action = "action_one",
+					release_required = "action_one_hold",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.3,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.3,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.3,
+					action = "action_three",
+					input = "action_three"
+				}
+			}
+Weapons.fencing_sword_template_1.actions.action_one.heavy_attack_charged.baked_sweep = nil
+--Default States
+Weapons.fencing_sword_template_1.actions.action_one.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.75,
+					buff_name = "planted_charging_decrease_movement"
+				}
+			}
+Weapons.fencing_sword_template_1.actions.action_one.default.allowed_chain_actions = {
+				{
+					sub_action = "light_attack_left",
+					start_time = 0,
+					end_time = 0.25,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "heavy_attack",
+					start_time = 0.35,
+					end_time = 0.5,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "heavy_attack_charged",
+					start_time = 0.7,
+					end_time = 1,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_three",
+					input = "action_three"
+				},
+				{
+					start_time = 0.35,
+					end_time = 1,
+					blocker = true,
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "heavy_attack_charged",
+					start_time = 1,
+					action = "action_one",
+					auto_chain = true
+				}
+			}
+Weapons.fencing_sword_template_1.actions.action_one.default_right.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.75,
+					buff_name = "planted_charging_decrease_movement"
+				}
+			}
+Weapons.fencing_sword_template_1.actions.action_one.default_right.allowed_chain_actions = {
+				{
+					sub_action = "light_attack_right",
+					start_time = 0,
+					end_time = 0.25,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "heavy_attack",
+					start_time = 0.35,
+					end_time = 0.5,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "heavy_attack_charged",
+					start_time = 0.7,
+					end_time = 1,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_three",
+					input = "action_three"
+				},
+				{
+					start_time = 0.35,
+					end_time = 1,
+					blocker = true,
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "heavy_attack_charged",
+					start_time = 1,
+					action = "action_one",
+					auto_chain = true
+				}
+			}
+Weapons.fencing_sword_template_1.actions.action_one.default_left.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.75,
+					buff_name = "planted_charging_decrease_movement"
+				}
+			}
+Weapons.fencing_sword_template_1.actions.action_one.default_left.allowed_chain_actions = {
+				{
+					sub_action = "light_attack_left_last",
+					start_time = 0,
+					end_time = 0.25,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "heavy_attack",
+					start_time = 0.35,
+					end_time = 0.5,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "heavy_attack_charged",
+					start_time = 0.7,
+					end_time = 1,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_three",
+					input = "action_three"
+				},
+				{
+					start_time = 0.35,
+					end_time = 1,
+					blocker = true,
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "heavy_attack_charged",
+					start_time = 1,
+					action = "action_one",
+					auto_chain = true
+				}
+			}
 --Dodge/Block/etc
+Weapons.fencing_sword_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.fencing_sword_template_1.dodge_count = 5
+Weapons.fencing_sword_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.fencing_sword_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 Weapons.fencing_sword_template_1.block_fatigue_point_multiplier = 0.5
 -------------------------------------------------Axe and Falchion---------------------------------------------------------------------------------
 --Lights 1/4
@@ -18189,8 +18872,16 @@ Weapons.dual_wield_axe_falchion_template.actions.action_one.default_down_heavy.a
 				}
 			}
 --Dodge/Block/etc
-Weapons.dual_wield_axe_falchion_template.buffs.change_dodge_distance.external_optional_multiplier = 1.15
-Weapons.dual_wield_axe_falchion_template.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+Weapons.dual_wield_axe_falchion_template.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.dual_wield_axe_falchion_template.dodge_count = 5
+Weapons.dual_wield_axe_falchion_template.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.dual_wield_axe_falchion_template.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 --------------------------------------------------------------Dual Skullsplitter------------------------------------------------------------------
 --Lights 1/2/3
 Weapons.dual_wield_hammers_priest_template.actions.action_one.light_attack_left.damage_profile = "DH_light_attack_dual"
@@ -18845,113 +19536,223 @@ Weapons.dual_wield_hammers_priest_template.actions.action_one.default_left.allow
 				}
 			}
 --Dodge/Block/etc
---Dodge/Block/etc
+Weapons.dual_wield_hammers_priest_template.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.dual_wield_hammers_priest_template.max_fatigue_points = 6
-Weapons.dual_wield_hammers_priest_template.dodge_count = 4
-Weapons.dual_wield_hammers_priest_template.buffs.change_dodge_distance.external_optional_multiplier = 1.15
-Weapons.dual_wield_hammers_priest_template.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+Weapons.dual_wield_hammers_priest_template.dodge_count = 5
+Weapons.dual_wield_hammers_priest_template.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.dual_wield_hammers_priest_template.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 -----------------------------------------------------Billhook-----------------------------------------------------------------------------------------
---Lights/Pushstab
+--Lights 1/2
 Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.damage_profile = "medium_slashing_smiter_stab_elf"
-Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.total_time = 1.49
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.height_mod = 3
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.width_mod = 15
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.range_mod = 1.6
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.range_mod_add = nil
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.total_time = 1.275
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.anim_time_scale = 0.85
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.34,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.34,
+					external_multiplier = 0.7,
+					end_time = 0.49,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab.allowed_chain_actions = {
 				{
 					sub_action = "default_left",
 					start_time = 0.5,
+					end_time = 0.85,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left",
 					start_time = 0.5,
+					end_time = 0.85,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.42,
-					action = "action_two",
-					input = "action_two_hold"
-				},
-				{
-					sub_action = "default",
-					start_time = 0.42,
-					action = "action_wield",
-					input = "action_wield"
-				},
-				{
-					sub_action = "default",
-					start_time = 0.42,
-					action = "action_three",
-					input = "action_three"
-				}
-			}
-Weapons.two_handed_billhooks_template.actions.action_one.light_attack_left.total_time = 1.49
-Weapons.two_handed_billhooks_template.actions.action_one.light_attack_left.anim_time_scale = 0.85
-Weapons.two_handed_billhooks_template.actions.action_one.light_attack_left.allowed_chain_actions = {
-				{
-					sub_action = "default_stab",
-					start_time = 0.52,
+					start_time = 0.85,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
-					sub_action = "default_stab",
-					start_time = 0.52,
+					sub_action = "default",
+					start_time = 0.85,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.43,
+					start_time = 0.4165,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.43,
+					start_time = 0.4165,
 					action = "action_wield",
 					input = "action_wield"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.43,
+					start_time = 0.4165,
 					action = "action_three",
 					input = "action_three"
 				}
 			}
 Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.damage_profile = "medium_slashing_smiter_stab_elf"
-Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.total_time = 1.49
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.height_mod = 3
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.width_mod = 15
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.range_mod = 1.6
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.range_mod_add = nil
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.total_time = 1.275
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.anim_time_scale = 0.85
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.34,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.34,
+					external_multiplier = 0.7,
+					end_time = 0.49,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.two_handed_billhooks_template.actions.action_one.light_attack_stab_2.allowed_chain_actions = {
 				{
 					sub_action = "default_left",
 					start_time = 0.5,
+					end_time = 0.85,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left",
 					start_time = 0.5,
+					end_time = 0.85,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.42,
+					start_time = 0.85,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.85,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.4165,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.42,
+					start_time = 0.4165,
 					action = "action_wield",
 					input = "action_wield"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.42,
+					start_time = 0.4165,
 					action = "action_three",
 					input = "action_three"
+				}
+			}
+--Light 3/Pushstab
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_left.range_mod = 1.35
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_left.total_time = 1.275
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_left.anim_time_scale = 0.85
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_left.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.34,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.34,
+					external_multiplier = 0.7,
+					end_time = 0.49,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_left.allowed_chain_actions = {
+				{
+					sub_action = "default_stab",
+					start_time = 0.5185,
+					end_time = 0.85,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_stab",
+					start_time = 0.5185,
+					end_time = 0.85,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.85,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.85,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.4335,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.4335,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.4335,
+					action = "action_three",
+					input = "action_three"
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.push.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.25,
+					end_time = 0.2,
+					buff_name = "planted_fast_decrease_movement"
 				}
 			}
 Weapons.two_handed_billhooks_template.actions.action_one.push.allowed_chain_actions = {
@@ -19000,72 +19801,988 @@ Weapons.two_handed_billhooks_template.actions.action_one.push.allowed_chain_acti
 					input = "action_three"
 				}
 			}
-Weapons.two_handed_billhooks_template.actions.action_one.light_attack_bopp.total_time = 1.49
-Weapons.two_handed_billhooks_template.actions.action_one.light_attack_bopp.anim_time_scale = 1.1
-Weapons.two_handed_billhooks_template.actions.action_one.light_attack_bopp.	allowed_chain_actions = {
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_bopp.range_mod = 1.35
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_bopp.total_time = 1.725
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_bopp.anim_time_scale = 1.15
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_bopp.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.34,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.34,
+					external_multiplier = 0.7,
+					end_time = 0.49,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.light_attack_bopp.allowed_chain_actions = {
 				{
 					sub_action = "default_left",
-					start_time = 0.67,
+					start_time = 0.7015,
+					end_time = 1.15,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left",
-					start_time = 0.67,
+					start_time = 0.7015,
+					end_time = 1.15,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.56,
+					start_time = 1.15,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.15,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.5865,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.56,
+					start_time = 0.5865,
 					action = "action_wield",
 					input = "action_wield"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.56,
+					start_time = 0.5865,
 					action = "action_three",
 					input = "action_three"
 				}
 			}
+--Heavies
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_stab.height_mod = 3
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_stab.width_mod = 15
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_stab.range_mod = 1.8
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_stab.range_mod_add = nil
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_stab.total_time = 1.785
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_stab.anim_time_scale = 1.19
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_stab.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 2,
+					end_time = 0.25,
+					buff_name = "planted_fast_decrease_movement"
+				},
+				{
+					start_time = 0.25,
+					external_multiplier = 0.5,
+					end_time = 0.4,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_stab.allowed_chain_actions = {
+				{
+					sub_action = "default_left",
+					start_time = 0.595,
+					end_time = 1.19,
+					action = "action_one",
+					release_required = "action_one_hold",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_left",
+					start_time = 0.595,
+					end_time = 1.19,
+					action = "action_one",
+					release_required = "action_one_hold",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.19,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.19,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.476,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.595,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.476,
+					action = "action_three",
+					input = "action_three"
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_down.range_mod = 1.4
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_down.range_mod_add = nil
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_down.total_time = 1.53
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_down.anim_time_scale = 1.02
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_down.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 2,
+					end_time = 0.25,
+					buff_name = "planted_fast_decrease_movement"
+				},
+				{
+					start_time = 0.25,
+					external_multiplier = 0.5,
+					end_time = 0.4,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.heavy_attack_down.allowed_chain_actions = {
+				{
+					sub_action = "default_stab",
+					start_time = 0.51,
+					end_time = 1.02,
+					action = "action_one",
+					release_required = "action_one_hold",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_stab",
+					start_time = 0.51,
+					end_time = 1.02,
+					action = "action_one",
+					release_required = "action_one_hold",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.02,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.02,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.408,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.51,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.408,
+					action = "action_three",
+					input = "action_three"
+				}
+			}
+--Default States
+Weapons.two_handed_billhooks_template.actions.action_one.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.75,
+					buff_name = "planted_charging_decrease_movement"
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.default.allowed_chain_actions = {
+				{
+					sub_action = "light_attack_stab",
+					start_time = 0,
+					end_time = 0.25,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "heavy_attack_stab",
+					start_time = 0.5,
+					end_time = 1,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_three",
+					input = "action_three"
+				},
+				{
+					start_time = 0.5,
+					end_time = 1,
+					blocker = true,
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "heavy_attack_stab",
+					start_time = 0.8,
+					action = "action_one",
+					auto_chain = true
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.default_left.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.75,
+					buff_name = "planted_charging_decrease_movement"
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.default_left.allowed_chain_actions = {
+				{
+					sub_action = "light_attack_left",
+					start_time = 0,
+					end_time = 0.25,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "heavy_attack_down",
+					start_time = 0.5,
+					end_time = 1,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_three",
+					input = "action_three"
+				},
+				{
+					start_time = 0.5,
+					end_time = 1,
+					blocker = true,
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "heavy_attack_down",
+					start_time = 0.8,
+					action = "action_one",
+					auto_chain = true
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.default_stab.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.75,
+					buff_name = "planted_charging_decrease_movement"
+				}
+			}
+Weapons.two_handed_billhooks_template.actions.action_one.default_stab.allowed_chain_actions = {
+				{
+					sub_action = "light_attack_stab_2",
+					start_time = 0,
+					end_time = 0.25,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "heavy_attack_stab",
+					start_time = 0.5,
+					end_time = 1,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_three",
+					input = "action_three"
+				},
+				{
+					start_time = 0.5,
+					end_time = 1,
+					blocker = true,
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "heavy_attack_stab",
+					start_time = 0.8,
+					action = "action_one",
+					auto_chain = true
+				}
+			}
 --Dodge/Block/etc
-Weapons.two_handed_billhooks_template.dodge_count = 4
-Weapons.two_handed_billhooks_template.block_angle = 180
-Weapons.two_handed_billhooks_template.actions.action_two.default.buff_data = {
+Weapons.two_handed_hammer_priest_template.actions.action_two.default.buff_data = {
 				{
 					start_time = 0,
 					external_multiplier = 0.7,
 					buff_name = "planted_decrease_movement"
 				}
 			}
+Weapons.two_handed_billhooks_template.dodge_count = 4
+Weapons.two_handed_billhooks_template.buffs.change_dodge_distance.external_optional_multiplier = 1.15
+Weapons.two_handed_billhooks_template.buffs.change_dodge_speed.external_optional_multiplier = 1.15
 -------------------------------------------------------------2H Sword-------------------------------------------------------------------------------
 --All code from Kruber 2H Sword affects the entirety of Saltzpyre 2H Sword
 --------------------------------------------------------------Flail-----------------------------------------------------------------------------------
---Lights 1/2/Pushstab
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.damage_profile = "medium_blunt_tank"
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.anim_time_scale = 1
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.hit_mass_count = TANK_HIT_MASS_COUNT
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_right.damage_profile = "medium_blunt_tank"
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_right.anim_time_scale = 1
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_right.hit_mass_count = TANK_HIT_MASS_COUNT
---Lights 3/4/Pushstab
+--Lights 1/2
 Weapons.one_handed_flail_template_1.actions.action_one.light_attack_last.damage_profile = "medium_slashing_smiter_2h"
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_last.anim_time_scale = 1
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_last.ignore_armour_hit = nil
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_last.total_time = 1.8
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_last.anim_time_scale = 1.2
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_last.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.5,
+					end_time = 0.31,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.31,
+					external_multiplier = 0.5,
+					end_time = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_last.allowed_chain_actions = {
+				{
+					sub_action = "default_left",
+					start_time = 0.72,
+					end_time = 1.2,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_left",
+					start_time = 0.72,
+					end_time = 1.2,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.66,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.66,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
 Weapons.one_handed_flail_template_1.actions.action_one.light_attack_down.damage_profile = "medium_slashing_smiter_2h"
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_down.anim_time_scale = 1
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.damage_profile = "medium_slashing_smiter_2h"
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.anim_time_scale = 1
-Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.hit_mass_count = nil
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_down.ignore_armour_hit = nil
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_down.total_time = 1.8
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_down.anim_time_scale = 1.2
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_down.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.5,
+					end_time = 0.31,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.31,
+					external_multiplier = 0.5,
+					end_time = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_down.allowed_chain_actions = {
+				{
+					sub_action = "default_right",
+					start_time = 0.78,
+					end_time = 1.2,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_right",
+					start_time = 0.78,
+					end_time = 1.2,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.66,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.66,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+--Pushstab/Light 3
+Weapons.one_handed_flail_template_1.actions.action_one.push.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.25,
+					end_time = 0.2,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.push.allowed_chain_actions = {
+				{
+					sub_action = "default",
+					start_time = 0.25,
+					action = "action_one",
+					release_required = "action_two_hold",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.25,
+					action = "action_one",
+					release_required = "action_two_hold",
+					doubleclick_window = 0,
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "light_attack_bopp",
+					start_time = 0.25,
+					action = "action_one",
+					doubleclick_window = 0,
+					end_time = 0.8,
+					input = "action_one_hold",
+					hold_required = {
+						"action_two_hold",
+						"action_one_hold"
+					}
+				},
+				{
+					sub_action = "default",
+					start_time = 0.25,
+					action = "action_two",
+					send_buffer = true,
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.25,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.damage_profile = "medium_slashing_axe_linesman"
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.total_time = 2.25
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.anim_time_scale = 1.5
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.3,
+					external_multiplier = 0.7,
+					end_time = 0.5,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.allowed_chain_actions = {
+				{
+					sub_action = "default_left",
+					start_time = 0.825,
+					end_time = 1.5,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_left",
+					start_time = 0.825,
+					end_time = 1.5,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.5,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.5,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.75,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.75,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_bopp.hit_mass_count = LINESMAN_HIT_MASS_COUNT
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.damage_profile = "medium_slashing_axe_linesman"
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.damage_window_end = 0.52
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.total_time = 2.25
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.anim_time_scale = 1.5
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 1.3,
+					end_time = 0.3,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.3,
+					external_multiplier = 0.7,
+					end_time = 0.5,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.allowed_chain_actions = {
+				{
+					sub_action = "default",
+					start_time = 0.825,
+					end_time = 1.5,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.825,
+					end_time = 1.5,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.5,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.5,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.75,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.75,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.light_attack_left.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 --Heavies
-Weapons.one_handed_flail_template_1.actions.action_one.default_charge.allowed_chain_actions[1].start_time = 0
-Weapons.one_handed_flail_template_1.actions.action_one.default_left.allowed_chain_actions[4].start_time = 0.5
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.damage_profile = "heavy_slashing_axe_linesman"
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.hit_stop_anim =nil
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.ignore_armour_hit = nil
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.slide_armour_hit = true
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.range_mod = 1.4
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.total_time = 1.8
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.anim_time_scale = 1.2
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 2,
+					end_time = 0.33635,
+					buff_name = "planted_fast_decrease_movement"
+				},
+				{
+					start_time = 0.33635,
+					external_multiplier = 0.5,
+					end_time = 0.5,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.allowed_chain_actions = {
+				{
+					sub_action = "default_left",
+					start_time = 0.72,
+					end_time = 1.2,
+					action = "action_one",
+					release_required = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_left",
+					start_time = 0.72,
+					end_time = 1.2,
+					action = "action_one",
+					release_required = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.6,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.72,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack.hit_mass_count = HEAVY_LINESMAN_HIT_MASS_COUNT
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.damage_profile = "heavy_slashing_axe_linesman"
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.hit_stop_anim =nil
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.ignore_armour_hit = nil
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.slide_armour_hit = true
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.range_mod = 1.4
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.total_time = 1.8
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.anim_time_scale = 1.2
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 2,
+					end_time = 0.33635,
+					buff_name = "planted_fast_decrease_movement"
+				},
+				{
+					start_time = 0.33635,
+					external_multiplier = 0.5,
+					end_time = 0.5,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.allowed_chain_actions = {
+				{
+					sub_action = "default_right",
+					start_time = 0.72,
+					end_time = 1.2,
+					action = "action_one",
+					release_required = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_right",
+					start_time = 0.72,
+					end_time = 1.2,
+					action = "action_one",
+					release_required = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.2,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.6,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.72,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.heavy_attack_left.hit_mass_count = HEAVY_LINESMAN_HIT_MASS_COUNT
+--Default States
+Weapons.one_handed_flail_template_1.actions.action_one.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_charging_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.default.allowed_chain_actions = {
+				{
+					sub_action = "light_attack_last",
+					start_time = 0,
+					end_time = 0.25,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default_charge",
+					start_time = 0.6,
+					send_buffer = true,
+					action = "action_one",
+					auto_chain = true
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.default_left.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_charging_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.default_left.allowed_chain_actions = {
+				{
+					sub_action = "light_attack_down",
+					start_time = 0,
+					end_time = 0.25,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default_charge_2",
+					start_time = 0.6,
+					send_buffer = true,
+					action = "action_one",
+					auto_chain = true
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.default_right.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_charging_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.default_right.allowed_chain_actions = {
+				{
+					sub_action = "light_attack_left",
+					start_time = 0,
+					end_time = 0.25,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default_charge",
+					start_time = 0.6,
+					send_buffer = true,
+					action = "action_one",
+					auto_chain = true
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.default_charge.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6425,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.default_charge.allowed_chain_actions = {
+				{
+					sub_action = "heavy_attack",
+					start_time = 0,
+					end_time = 0.5,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default_charge",
+					start_time = 0.5,
+					action = "action_one",
+					send_buffer = true,
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "heavy_attack",
+					start_time = 0.5,
+					action = "action_one",
+					auto_chain = true
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.default_charge_2.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6425,
+					buff_name = "planted_fast_decrease_movement"
+				}
+			}
+Weapons.one_handed_flail_template_1.actions.action_one.default_charge_2.allowed_chain_actions = {
+				{
+					sub_action = "heavy_attack_left",
+					start_time = 0,
+					end_time = 0.5,
+					action = "action_one",
+					input = "action_one_release"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0,
+					action = "action_wield",
+					input = "action_wield"
+				},
+				{
+					sub_action = "default_charge_2",
+					start_time = 0.5,
+					action = "action_one",
+					send_buffer = true,
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "heavy_attack_left",
+					start_time = 0.5,
+					action = "action_one",
+					auto_chain = true
+				}
+			}
 --Dodge/Block/etc
+Weapons.one_handed_flail_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.one_handed_flail_template_1.dodge_count = 3
 Weapons.one_handed_flail_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.1
 Weapons.one_handed_flail_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.1
@@ -19651,6 +21368,13 @@ Weapons.two_handed_hammer_priest_template.actions.action_one.default_03.allowed_
 				}
 			}
 --Dodge/Block/etc
+Weapons.two_handed_hammer_priest_template.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.two_handed_hammer_priest_template.dodge_count = 3
 Weapons.two_handed_hammer_priest_template.buffs.change_dodge_distance.external_optional_multiplier = 1.1
 Weapons.two_handed_hammer_priest_template.buffs.change_dodge_speed.external_optional_multiplier = 1.1
@@ -20552,14 +22276,15 @@ Weapons.one_handed_crowbill.actions.action_two.default.buff_data = {
 					buff_name = "planted_decrease_movement"
 				}
 			}
-Weapons.one_handed_crowbill.dodge_count = 5
-Weapons.one_handed_crowbill.buffs.change_dodge_distance.external_optional_multiplier = 1.2
-Weapons.one_handed_crowbill.buffs.change_dodge_speed.external_optional_multiplier = 1.2
+Weapons.one_handed_crowbill.dodge_count = 6
+Weapons.one_handed_crowbill.buffs.change_dodge_distance.external_optional_multiplier = 1.25
+Weapons.one_handed_crowbill.buffs.change_dodge_speed.external_optional_multiplier = 1.25
 -------------------------------------------------------------1h Sword----------------------------------------------------------------------------
 --Code Affected Entirely by Kruber 1h Sword
 -----------------------------------------------------------Sienna Dagger--------------------------------------------------------------------------
 --Lights 1/2/4
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_left.total_time = 2.1
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_left.range_mod = 1.3
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_left.anim_time_scale = 1.4
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_left.buff_data = {
 				{
@@ -20617,6 +22342,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_left.allow
 			}
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_left.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_right.total_time = 2.4
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_right.range_mod = 1.3
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_right.anim_time_scale = 1.6
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_right.buff_data = {
 				{
@@ -20674,6 +22400,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_right.allo
 			}
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_right.hit_mass_count = LINESMAN_HIT_MASS_COUNT
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_last.total_time = 2.4
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_last.range_mod = 1.3
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_last.anim_time_scale = 1.6
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_last.buff_data = {
 				{
@@ -20730,64 +22457,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_last.allow
 				}
 			}
 Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_last.hit_mass_count = LINESMAN_HIT_MASS_COUNT
---Light 3/Pushstab
-Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.damage_profile = "medium_fencer_stab"
-Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.total_time = 1.95
-Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.anim_time_scale = 1.3
-Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.buff_data = {
-				{
-					start_time = 0,
-					external_multiplier = 2,
-					end_time = 0.17,
-					buff_name = "planted_decrease_movement"
-				},
-				{
-					start_time = 0.17,
-					external_multiplier = 0.5,
-					end_time = 0.25,
-					buff_name = "planted_decrease_movement"
-				}
-			}
-Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.allowed_chain_actions = {
-				{
-					sub_action = "default_last",
-					start_time = 0.39,
-					end_time = 1.3,
-					action = "action_one",
-					input = "action_one"
-				},
-				{
-					sub_action = "default_last",
-					start_time = 0.39,
-					end_time = 1.3,
-					action = "action_one",
-					input = "action_one_hold"
-				},
-				{
-					sub_action = "default",
-					start_time = 1.3,
-					action = "action_one",
-					input = "action_one"
-				},
-				{
-					sub_action = "default",
-					start_time = 1.3,
-					action = "action_one",
-					input = "action_one_hold"
-				},
-				{
-					sub_action = "default",
-					start_time = 0.39,
-					action = "action_two",
-					input = "action_two_hold"
-				},
-				{
-					sub_action = "default",
-					start_time = 0.52,
-					action = "action_wield",
-					input = "action_wield"
-				}
-			}
+--Pushstab
 Weapons.one_handed_daggers_template_1.actions.action_one.push.fatigue_cost = nil
 Weapons.one_handed_daggers_template_1.actions.action_one.push.buff_data = {
 				{
@@ -20815,7 +22485,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.push.allowed_chain_acti
 					input = "action_one_hold"
 				},
 				{
-					sub_action = "light_attack_last",
+					sub_action = "push_stab",
 					start_time = 0.25,
 					action = "action_one",
 					doubleclick_window = 0,
@@ -20840,9 +22510,13 @@ Weapons.one_handed_daggers_template_1.actions.action_one.push.allowed_chain_acti
 					input = "action_wield"
 				}
 			}
-Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.damage_profile = "medium_fencer_stab"
-Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.total_time = 2.25
-Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.anim_time_scale = 1.5
+Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.anim_event = "attack_swing_left"
+Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.damage_profile = "light_slashing_linesman_fencer"
+Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.damage_window_start = 0.33
+Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.damage_window_end = 0.43
+Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.total_time = 2.4
+Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.range_mod = 1.3
+Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.anim_time_scale = 1.6
 Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.buff_data = {
 				{
 					start_time = 0,
@@ -20859,47 +22533,118 @@ Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.buff_data = {
 			}
 Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.allowed_chain_actions = {
 				{
-					sub_action = "default_left",
-					start_time = 0.45,
-					end_time = 1.5,
+					sub_action = "default_right",
+					start_time = 0.688,
+					end_time = 1.6,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
-					sub_action = "default_left",
-					start_time = 0.45,
-					end_time = 1.5,
+					sub_action = "default_right",
+					start_time = 0.688,
+					end_time = 1.6,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.5,
+					start_time = 1.6,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 1.5,
+					start_time = 1.6,
 					action = "action_one",
 					input = "action_one_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.45,
+					start_time = 0.48,
 					action = "action_two",
 					input = "action_two_hold"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.6,
+					start_time = 0.48,
 					action = "action_wield",
 					input = "action_wield"
 				}
 			}
+Weapons.one_handed_daggers_template_1.actions.action_one.push_stab.baked_sweep = nil
 --Heavies
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.anim_event = "attack_swing_heavy_right"
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.damage_profile = "medium_fencer_stab"
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.damage_window_start = 0
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.damage_window_end = 0.2
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.height_mod = 1
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.width_mod = 0.1
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.sweep_z_offset = -0.025
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.total_time = 2.175
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.range_mod = 1.4
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.anim_time_scale = 1.45
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 2,
+					end_time = 0.17,
+					buff_name = "planted_decrease_movement"
+				},
+				{
+					start_time = 0.17,
+					external_multiplier = 0.5,
+					end_time = 0.25,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.allowed_chain_actions = {
+				{
+					sub_action = "default_last",
+					start_time = 0.43,
+					end_time = 1.45,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default_last",
+					start_time = 0.43,
+					end_time = 1.45,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.45,
+					action = "action_one",
+					input = "action_one"
+				},
+				{
+					sub_action = "default",
+					start_time = 1.45,
+					action = "action_one",
+					input = "action_one_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.435,
+					action = "action_two",
+					input = "action_two_hold"
+				},
+				{
+					sub_action = "default",
+					start_time = 0.435,
+					action = "action_wield",
+					input = "action_wield"
+				}
+			}
+Weapons.one_handed_daggers_template_1.actions.action_one.light_attack_stab.baked_sweep = nil
 Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.damage_profile = "medium_fencer_stab_charged"
+Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.damage_window_start = 0
+Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.height_mod = 1
+Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.width_mod = 0.1
+Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.sweep_z_offset = -0.025
 Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.total_time = 2.175
+Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.range_mod = 1.8
 Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.anim_time_scale = 1.45
 Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.buff_data = {
 				{
@@ -20957,6 +22702,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.allo
 					input = "action_wield"
 				}
 			}
+Weapons.one_handed_daggers_template_1.actions.action_one.heavy_attack_right.baked_sweep = nil
 --Default States
 Weapons.one_handed_daggers_template_1.actions.action_one.default.anim_event = "attack_swing_charge_left"
 Weapons.one_handed_daggers_template_1.actions.action_one.default.buff_data = {
@@ -20977,7 +22723,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.default.allowed_chain_a
 				{
 					sub_action = "light_attack_stab",
 					start_time = 0.35,
-					end_time = 0.55,
+					end_time = 0.5,
 					action = "action_one",
 					input = "action_one_release"
 				},
@@ -21001,7 +22747,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.default.allowed_chain_a
 					input = "action_wield"
 				},
 				{
-					start_time = 0.7,
+					start_time = 0.35,
 					end_time = 1,
 					input = "action_one_hold"
 				},
@@ -21031,7 +22777,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.default_right.allowed_c
 				{
 					sub_action = "light_attack_stab",
 					start_time = 0.35,
-					end_time = 0.55,
+					end_time = 0.5,
 					action = "action_one",
 					input = "action_one_release"
 				},
@@ -21055,7 +22801,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.default_right.allowed_c
 					input = "action_wield"
 				},
 				{
-					start_time = 0.7,
+					start_time = 0.35,
 					end_time = 1,
 					input = "action_one_hold"
 				},
@@ -21085,7 +22831,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.default_left.allowed_ch
 				{
 					sub_action = "light_attack_stab",
 					start_time = 0.35,
-					end_time = 0.55,
+					end_time = 0.5,
 					action = "action_one",
 					input = "action_one_release"
 				},
@@ -21109,7 +22855,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.default_left.allowed_ch
 					input = "action_wield"
 				},
 				{
-					start_time = 0.7,
+					start_time = 0.35,
 					end_time = 1,
 					input = "action_one_hold"
 				},
@@ -21139,7 +22885,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.default_last.allowed_ch
 				{
 					sub_action = "light_attack_stab",
 					start_time = 0.35,
-					end_time = 0.55,
+					end_time = 0.5,
 					action = "action_one",
 					input = "action_one_release"
 				},
@@ -21163,7 +22909,7 @@ Weapons.one_handed_daggers_template_1.actions.action_one.default_last.allowed_ch
 					input = "action_wield"
 				},
 				{
-					start_time = 0.7,
+					start_time = 0.35,
 					end_time = 1,
 					input = "action_one_hold"
 				},
@@ -21175,8 +22921,16 @@ Weapons.one_handed_daggers_template_1.actions.action_one.default_last.allowed_ch
 				}
 			}
 --Dodge/Block/etc
-Weapons.one_handed_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.25
-Weapons.one_handed_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.25
+Weapons.one_handed_daggers_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.one_handed_daggers_template_1.dodge_count = 5
+Weapons.one_handed_daggers_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.one_handed_daggers_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 Weapons.one_handed_daggers_template_1.block_angle = 90
 ----------------------------------------------------------Flaming Sword----------------------------------------------------------------------------
 --Lights 1/2/3
@@ -21187,27 +22941,27 @@ Weapons.flaming_sword_template_1.actions.action_one.light_attack_bopp.buff_data 
 				{
 					start_time = 0,
 					external_multiplier = 1.3,
-					end_time = 0.1,
-					buff_name = "planted_fast_decrease_movement"
+					end_time = 0.16835,
+					buff_name = "planted_decrease_movement"
 				},
 				{
-					start_time = 0.1,
+					start_time = 0.16835,
 					external_multiplier = 0.9,
 					end_time = 0.35,
-					buff_name = "planted_fast_decrease_movement"
+					buff_name = "planted_decrease_movement"
 				}
 			}
 Weapons.flaming_sword_template_1.actions.action_one.light_attack_bopp.allowed_chain_actions = {
 				{
 					sub_action = "default_right",
-					start_time = 0.68,
+					start_time = 0.697,
 					end_time = 1.7,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_right",
-					start_time = 0.68,
+					start_time = 0.697,
 					end_time = 1.7,
 					action = "action_one",
 					input = "action_one_hold"
@@ -21245,27 +22999,27 @@ Weapons.flaming_sword_template_1.actions.action_one.light_attack_right.buff_data
 				{
 					start_time = 0,
 					external_multiplier = 1.3,
-					end_time = 0.1,
-					buff_name = "planted_fast_decrease_movement"
+					end_time = 0.16835,
+					buff_name = "planted_decrease_movement"
 				},
 				{
-					start_time = 0.1,
+					start_time = 0.16835,
 					external_multiplier = 0.9,
 					end_time = 0.35,
-					buff_name = "planted_fast_decrease_movement"
+					buff_name = "planted_decrease_movement"
 				}
 			}
 Weapons.flaming_sword_template_1.actions.action_one.light_attack_right.allowed_chain_actions = {
 				{
 					sub_action = "default_left",
-					start_time = 0.68,
+					start_time = 0.697,
 					end_time = 1.7,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default_left",
-					start_time = 0.68,
+					start_time = 0.697,
 					end_time = 1.7,
 					action = "action_one",
 					input = "action_one_hold"
@@ -21303,27 +23057,27 @@ Weapons.flaming_sword_template_1.actions.action_one.light_attack_left.buff_data 
 				{
 					start_time = 0,
 					external_multiplier = 1.3,
-					end_time = 0.1,
-					buff_name = "planted_fast_decrease_movement"
+					end_time = 0.16835,
+					buff_name = "planted_decrease_movement"
 				},
 				{
-					start_time = 0.1,
+					start_time = 0.16835,
 					external_multiplier = 0.9,
 					end_time = 0.35,
-					buff_name = "planted_fast_decrease_movement"
+					buff_name = "planted_decrease_movement"
 				}
 			}
 Weapons.flaming_sword_template_1.actions.action_one.light_attack_left.allowed_chain_actions = {
 				{
 					sub_action = "default",
-					start_time = 0.765,
+					start_time = 0.646,
 					end_time = 1.7,
 					action = "action_one",
 					input = "action_one"
 				},
 				{
 					sub_action = "default",
-					start_time = 0.765,
+					start_time = 0.646,
 					end_time = 1.7,
 					action = "action_one",
 					input = "action_one_hold"
@@ -21773,9 +23527,16 @@ Weapons.flaming_sword_template_1.actions.action_one.default_left.allowed_chain_a
 				}
 			}
 --Dodge/Block/etc
-Weapons.flaming_sword_template_1.dodge_count = 4
-Weapons.flaming_sword_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.15
-Weapons.flaming_sword_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.15
+Weapons.flaming_sword_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.8,
+					buff_name = "planted_decrease_movement"
+				}
+			}
+Weapons.flaming_sword_template_1.dodge_count = 5
+Weapons.flaming_sword_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.2
+Weapons.flaming_sword_template_1.buffs.change_dodge_speed.external_optional_multiplier = 1.2
 ----------------------------------------------------------Flaming Flail------------------------------------------------------------------------------
 --Lights 1/2
 Weapons.one_handed_flails_flaming_template.actions.action_one.light_attack_left.damage_profile = "medium_blunt_tank"
@@ -22276,7 +24037,7 @@ Weapons.one_handed_flails_flaming_template.actions.action_one.default.allowed_ch
 Weapons.one_handed_flails_flaming_template.actions.action_one.default_charge.buff_data = {
 				{
 					start_time = 0,
-					external_multiplier = 0.6,
+					external_multiplier = 0.6425,
 					buff_name = "planted_fast_decrease_movement"
 				}
 			}
@@ -22346,7 +24107,7 @@ Weapons.one_handed_flails_flaming_template.actions.action_one.default_right.allo
 Weapons.one_handed_flails_flaming_template.actions.action_one.default_charge_2.buff_data = {
 				{
 					start_time = 0,
-					external_multiplier = 0.6,
+					external_multiplier = 0.6425,
 					buff_name = "planted_fast_decrease_movement"
 				}
 			}
@@ -22450,6 +24211,13 @@ Weapons.one_handed_flails_flaming_template.actions.action_one.default_last.allow
 					}
 				}
 --Dodge/Block/etc
+Weapons.one_handed_flails_flaming_template.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.one_handed_flails_flaming_template.dodge_count = 3
 Weapons.one_handed_flails_flaming_template.buffs.change_dodge_distance.external_optional_multiplier = 1.1
 Weapons.one_handed_flails_flaming_template.buffs.change_dodge_speed.external_optional_multiplier = 1.1
@@ -23071,6 +24839,13 @@ Weapons.one_handed_hammer_wizard_template_1.actions.action_one.default_right.all
 				}
 			}
 --Dodge/Block/etc
+Weapons.one_handed_hammer_wizard_template_1.actions.action_two.default.buff_data = {
+				{
+					start_time = 0,
+					external_multiplier = 0.6,
+					buff_name = "planted_decrease_movement"
+				}
+			}
 Weapons.one_handed_hammer_wizard_template_1.max_fatigue_points = 6
 Weapons.one_handed_hammer_wizard_template_1.dodge_count = 3
 Weapons.one_handed_hammer_wizard_template_1.buffs.change_dodge_distance.external_optional_multiplier = 1.1
